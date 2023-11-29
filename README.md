@@ -1,7 +1,23 @@
 mlops-dvc
 ==============================
 
-see https://c17hawke.github.io/wafer_mlops_docs/stage1_init_setup/
+see https://c17hawke.github.io/wafer_mlops_docs/
+
+use GDRIVE as remote DVC storage for the data files
+create a repertory in googledrive (storage)
+with the Google API enable the drive API , create credential OAuth and a test user
+
+GDRIVE credential are saved in local in ./dvc/config.local when  we initialise dvc in local mode :
+remote add --local
+dvc remote add --local -d storage gdrive://...
+dvc remote modify --local storage gdrive_client_id '....'
+dvc remote modify --local storage gdrive_client_secret '...'
+
+
+in github credential are saved in secrets (content of file in .dvc/tmp/gdrive_user_credentials.json)
+will be initialise at the first dvc push
+
+stage1_init_setup/
 
 Project Organization
 ------------
