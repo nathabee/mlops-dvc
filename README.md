@@ -1,7 +1,29 @@
 mlops-dvc
+application to "Wafer"
 ==============================
+This project is an implementation of the Tutorial of a You Tube Video : 
+MLOPS end to end implementation https://www.youtube.com/watch?v=Ly3Dor8HZUA
+it uses the cookiecutter shell for the basic structure of the project
 
-see https://c17hawke.github.io/wafer_mlops_docs/
+Document are to be found in https://c17hawke.github.io/wafer_mlops_docs/
+=> this explains how to initialise a new project _(when you started from "null"), how to use dvc and mlops
+
+The DVC docs explains how to interface the google drive .
+It is recommended to use a custom Google Cloud project.  We should use the Google API console,create credential and use a TestUser
+For a detailled procedure see : https://dvc.org/doc/user-guide/data-management/remote-storage
+
+
+
+Because many files are not provided by Krish Naik or by Sunny, I had to make some research on GitHub and found wafer project, who are very inspirativ :
+https://github.com/suryanshyaknow/faulty-wafer-component-detection
+https://github.com/sethusaim/Wafer-Fault-Prediction-using-MlFlow/
+
+
+======================================
+thema : WAFER
+
+======================================
+stage1_init_setup/
 
 use GDRIVE as remote DVC storage for the data files
 create a repertory in googledrive (storage)
@@ -12,12 +34,14 @@ remote add --local
 dvc remote add --local -d storage gdrive://...
 dvc remote modify --local storage gdrive_client_id '....'
 dvc remote modify --local storage gdrive_client_secret '...'
+=> This will is secret and will not be imported in Github : it stays secret of my server
 
-
-in github credential are saved in secrets (content of file in .dvc/tmp/gdrive_user_credentials.json)
+in github , the credential are saved as "secrets" so that DVC connect to the GoogleDrive (content of file in .dvc/tmp/gdrive_user_credentials.json will be coped/pasted inside. ) Just the owner oh the repository has accees to them. So you need your own repository if you want to make your own
 will be initialise at the first dvc push
 
+===========================================
 stage1_init_setup/
+schema_prediction.json and schema_training.json are to be found in https://github.com/suryanshyaknow/faulty-wafer-component-detection. so I used them because they can not be found in 
 
 Project Organization
 ------------
