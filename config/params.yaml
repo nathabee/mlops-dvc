@@ -1,169 +1,11 @@
-base:
-  random_state: 42
-  test_size: 0.33
-
-target_col: Output
-
-app:
-  host: 0.0.0.0
-  port: 8080
-
-data:
-  raw_data:
-    train_batch: training_data
-    pred_batch: prediction_data
-
-  train:
-    good_data_dir: good/train
-    bad_data_dir: bad/train
-
-  pred:
-    good_data_dir: good/pred
-    bad_data_dir: bad/pred
-
-mongodb:
-  mongo_url:
-  wafer_data_db_name: wafer-data
-  wafer_train_data_collection: wafer-train-data
-  wafer_pred_data_collection: wafer-pred-data
-
-knn_imputer:
-  n_neighbors: 3
-  weights: uniform
-  missing_values: nan
-
-kmeans_cluster:
-  init: k-means++
-  max_clusters: 11
-
-knee:
-  curve: convex
-  direction: decreasing
-
-s3_bucket:
-  input_files: input-files-for-train-and-pred
-  wafer_model: wafer-model
-  wafer-mlflow: wafer-mlflow
-  wafer_pred_data: wafer-pred-data
-  wafer_train_data: wafer-train-data
-  wafer_raw_data: wafer-raw-data
-
-models_dir:
-  trained: trained/
-  stag: staging/
-  prod: production/
-
-model_utils:
-  verbose: 3
-  cv: 5
-  n_jobs: -1
-  save_format: .sav
-
-model_params:
-  RandomForestClassifier:
-    n_estimators:
-      - 10
-      - 50
-      - 100
-      - 130
-
-    criterion:
-      - gini
-      - entropy
-
-    max_features:
-      - auto
-      - log2
-
-    max_depth:
-      - 2
-      - 3
-      - 4
-      - 5
-
-  XGBClassifier:
-    learning_rate:
-      - 0.5
-      - 0.1
-      - 0.01
-      - 0.001
-
-    max_depth:
-      - 3
-      - 5
-      - 10
-      - 20
-
-    n_estimators:
-      - 10
-      - 50
-      - 100
-      - 200
-
-mlflow_config:
-  experiment_name: wafer-ops-test
-  run_name: mlops
-  serialization_format: cloudpickle
-  num_of_prod_models: 3
-
-db_log:
-  train: wafer_training_logs
-  pred: wafer_prediction_logs
-
-train_db_log:
-  model_training: model_training_log.txt
-  col_validation: train_col_validation_log.txt
-  data_transform: train_data_transform_log.txt
-  export_csv: train_export_to_csv_log.txt
-  general: train_general_log.txt
-  db_insert: train_db_insert_log.txt
-  load_prod_model: load_prod_model_log.txt
-  missing_values_in_col: train_missing_values_in_column.txt
-  name_validation: train_name_validation_log.txt
-  train_main: training_main_log.txt
-  values_from_schema: train_values_from_schema_log.txt
-
-pred_db_log:
-  col_validation: pred_col_validation_log.txt
-  data_transform: pred_data_transform_log.txt
-  db_insert: pred_db_insert_log.txt
-  export_csv: pred_export_to_csv_log.txt
-  general: pred_general_log.txt
-  missing_values_in_col: pred_missing_values_in_column.txt
-  name_validation: pred_name_validation_log.txt
-  pred_main: prediction_main_log.txt
-  values_from_schema: pred_values_from_schema_log.txt
-
-schema_file:
-  train: schema_training.json
-  pred: schema_prediction.json
-
-draw_elbow_plot_fig: K-Means_Elbow.PNG
-
-null_values_csv_file: null_values.csv
-
-regex_file: wafer-regex.txt
-
-pred_output_file: predictions.csv
-
-export_csv_file:
-  train: train_input_file.csv
-  pred: pred_input_file.csv
-
-templates:
-  dir: templates
-  index: index.html
-
-
-
-
 base :
-  project: Wafer-Proj
+  project: Wafer-Quality-Project
   random_state: 42
   target_col: Output
 
 data_source:
   batch_files: Training_Batch_files
+
 
 data_preparation:
   training_db: Training.db
@@ -184,3 +26,77 @@ pred_data_preparation:
   PredictionArchiveBadData: data/PredictionArchiveBadData
   Prediction_FileFromDB: data/Prediction_FileFromDB
   master_csv: master.csv
+
+
+
+saved_models:
+  model_dir: models
+
+data_preprocessing:
+  preprocessed_data_dir: data/preprocessed_data
+  null_values_csv: null_values.csv
+
+  preprocessed_data_dir_pred: data/preprocessed_data_pred
+
+
+  KNNImputer:
+    n_neighbors: 3
+    weights: uniform
+    missing_values: man
+
+  KMeansClustering:
+    init: K-means++
+    n_cluster_max: 11
+    KneeLocator:
+      curve: convex
+      direction: decreasing
+
+
+artifacts_dir:
+  general: general
+  mlflow: mlflow_artifacts
+
+
+training:
+  random_forest:
+    cv: 5
+    verbose: 3
+    param_grid:
+      n_estimators:
+        - 10
+        - 50
+        - 100
+        - 130
+      criterion:
+        - gini
+        - entropy
+      max_depth:
+        - 2
+        - 4
+      max_features:
+        - auto
+        - log2
+  xb_boost:
+    cv: 5
+    verbose: 3
+    param_grid:
+      learning_rate:
+        - 0.5
+        - 0.1
+        - 0.01
+        - 0.001
+      max_depth:
+        - 3
+        - 5
+        - 10
+        - 20
+      n_extimators:
+        - 10
+        - 50
+        - 100
+        - 200
+
+
+
+
+
