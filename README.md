@@ -1,8 +1,21 @@
-mlops-dvc
-application to "Wafer"
-==============================
+mlops-dvc 
+
+Problem Statement : WAFER
+To build a classification methodology to predict the failure of wafer sensors on the basis of given training data.
+
+Aim of this repository is to make a end to end projects with MLOPS
+
+====================================== 
+Cloud Deployment :     CI-CD deployment to Google Drive
+MLOPS :
+dvc : track the datas into Google Drive
+mlflow : follow performance and version for model with various parameters, can be tracked in DAGHUB
+github : track the code
+
+======================================
+ 
 This project is an implementation of the Tutorial of a You Tube Video : 
-MLOPS end to end implementation https://www.youtube.com/watch?v=Ly3Dor8HZUA
+MLOPS end to end implementation https://www.youtube.com/watch?v=Ly3Dor8HZUA (MLOPS End To End Implementation- Machine Learning von Krish Naik channel)
 it uses the cookiecutter shell for the basic structure of the project
 
 Document are to be found in https://c17hawke.github.io/wafer_mlops_docs/
@@ -15,15 +28,14 @@ For a detailled procedure see : https://dvc.org/doc/user-guide/data-management/r
 
 
 Because many files are not provided by Krish Naik or by Sunny, I had to make some research on GitHub and found wafer project, who are very inspirativ :
+
 https://github.com/suryanshyaknow/faulty-wafer-component-detection
+
 https://github.com/sethusaim/Wafer-Fault-Prediction-using-MlFlow/
 
 
-======================================
-thema : WAFER
 
-======================================
-stage1_init_setup/
+stage0_init_setup/
 
 use GDRIVE as remote DVC storage for the data files
 create a repertory in googledrive (storage)
@@ -43,6 +55,7 @@ will be initialise at the first dvc push
 stage1_init_setup/
 schema_prediction.json and schema_training.json are to be found in https://github.com/suryanshyaknow/faulty-wafer-component-detection. so I used them because they can not be found in 
 
+============================================
 Project Organization
 ------------
 
