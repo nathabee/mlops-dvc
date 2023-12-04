@@ -43,8 +43,12 @@ with the Google API enable the drive API , create credential OAuth and a test us
 
 GDRIVE credential are saved in local in ./dvc/config.local when  we initialise dvc in local mode :
 remote add --local
+'''batch
 dvc remote add --local -d storage gdrive://...
+'''
+'''batch
 dvc remote modify --local storage gdrive_client_id '....'
+'''
 dvc remote modify --local storage gdrive_client_secret '...'
 => This will is secret and will not be imported in Github : it stays secret of my server
 
